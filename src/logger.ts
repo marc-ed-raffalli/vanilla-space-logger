@@ -1,7 +1,15 @@
 import { defaultOptions, type LoggerLevel, type LoggerOptions, orderedLevels } from './options';
 import { noop } from './utils';
 
-export function makeLogger(namespace: string, options: LoggerOptions = defaultOptions): Console {
+/**
+ * The type `Logger` extends `Console`.
+ * It adds the `extend` method allowing to create loggers with a sub namespace.
+ */
+export type Logger = Console & {
+  extend: (namespace: string, options?: LoggerOptions) => Logger;
+};
+
+export function makeLogger(namespace: string, options: LoggerOptions = defaultOptions): Logger {
   const appliedOptions: Required<LoggerOptions> = { ...defaultOptions, ...options };
 
   function shouldLog(level: LoggerLevel): boolean {
@@ -25,6 +33,7 @@ export function makeLogger(namespace: string, options: LoggerOptions = defaultOp
 
   return {
     ...console,
+    extend: (subNamespace, opts = options) => makeLogger(`${namespace}:${subNamespace}`, opts),
     error: setLogFn('error'),
     warn: setLogFn('warn'),
     info: setLogFn('info'),
