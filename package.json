@@ -1,6 +1,6 @@
 {
   "name": "vanilla-space-logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A vanilla JS console logger with levels, namespace and colors",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
