@@ -26,19 +26,19 @@ Feel free to file an issue/upvote the feature on GitHub.
 ### Yarn
 
 ```shell
-yarn add colorful-logger
+yarn add vanilla-space-logger
 ```
 
 ### PNPM
 
 ```shell
-pnpm install colorful-logger
+pnpm install vanilla-space-logger
 ```
 
 ### NPM
 
 ```shell
-npm install colorful-logger
+npm install vanilla-space-logger
 ```
 
 ## 🛠️ Usage
@@ -52,17 +52,20 @@ import { makeLogger } from 'vanilla-space-logger';
 const logger = makeLogger('TodoList');
 
 logger.error('Sample error message', 123, 456);
-// prints `TodoList:Sample error message 123 456`
+// prints "TodoList:Sample error message 123 456"
 logger.warn('Sample warning message');
 logger.info('Sample info message');
 logger.log('Sample log message');
 logger.debug('Sample debug');
 logger.trace('Sample trace');
 
-const childLogger = logger.extend('API');
+const apiLogger = logger.extend('API');
+const storeLogger = logger.extend('store');
 
-childLogger.error('HTTP error message');
-// prints `TodoList:API:HTTP error message`
+apiLogger.error('HTTP error message');
+// prints "TodoList:API:HTTP error message"
+storeLogger.trace('updating task...');
+// prints "TodoList:store:updating task..."
 ```
 
 ## 🔧 Options

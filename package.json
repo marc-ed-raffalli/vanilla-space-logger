@@ -6,16 +6,19 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "private": false,
   "scripts": {
-    "ci": "yarn lint && yarn build && yarn test",
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "yarn lint && yarn compile && yarn test",
+    "compile": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc && eslint -c ./eslint.config.mjs .",
-    "test": "jest"
+    "test": "jest",
+    "release": "yarn build && changeset publish"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-typescript": "^7.24.7",
+    "@changesets/cli": "^2.27.7",
     "@eslint/js": "^9.8.0",
     "@types/jest": "^29.5.12",
     "babel-jest": "^29.7.0",

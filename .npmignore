@@ -1,0 +1,9 @@
+.changeset
+.github
+coverage
+src
+.nvmrc
+.prettierignore
+.prettierrc.json
+babel.config.js
+eslint.config.mjs
